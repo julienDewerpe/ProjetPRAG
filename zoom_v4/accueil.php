@@ -44,12 +44,7 @@
 		<div id="banniere">
 			<?php 
 				include('database_connection.php');
-
-				if(!isset($_SESSION["user_id"]))
-				{
-					header("location:login.php");
-				}
-				$id_session=$_SESSION['user_id'];
+				
 
 				$role = array ();	
 				$query = "
@@ -73,17 +68,7 @@
 					}
 				if ($role['role'] == 'candidat')
 				{
-					echo"
-					<h1>Toutes les rencontres</h1>";
-					$query="SELECT * FROM reunion r where r.id not in (select reunion_id from inscription where register_user_id=$id_session)";
-					
-					echo "<form name='form1' action='' method='post'>
-					<input type='submit' name='show_insc' class='btn btn-warning' value='Mes inscriptions'>
-					</form>";
-					if(isset($_POST["show_insc"]))
-					{
-						$query = "SELECT * FROM reunion r  INNER JOIN inscription i ON r.id=i.reunion_id and i.register_user_id=$id_session";
-					}
+					header('Location:accueil.php');;
 				}
 				if ($role['role'] == 'intervenant')
 				{
@@ -92,7 +77,7 @@
 					<form name='form1' action='' method='post'>
 					<input type='submit' name='submit1' class='btn btn-warning' value='Creer'>
 					</form>";
-					$query = "SELECT * FROM reunion r  INNER JOIN creation c ON r.id=c.reunion_id and c.register_user_id=$id_session";
+
 					if(isset($_POST["submit1"]))
 					{
 						header('Location:creerReunion.php');
@@ -115,12 +100,12 @@
 				$password="";
 				$databaseName="prag";
 				
+				$id_session=$_SESSION['user_id'];
 				$connect=mysqli_connect($hostname,$username,$password,$databaseName);
-
+				$query = "SELECT * FROM reunion";
 				
 				$result=mysqli_query($connect,$query);
 				
-
 				if ($result->num_rows > 0) {
 				// output data of each row
 
@@ -137,41 +122,25 @@
 								<div class='groupement'>
 									<p>{$row['difficulte']}</p>
 									<p>{$row['date']}</p>
-									<p>{$row['niveau']}</p>
-								</div>";
-								$reunion_id=$row['id'];
-								$resulta=mysqli_query($connect,"SELECT count(*) as total from inscription where reunion_id= $reunion_id");
-								$data=mysqli_fetch_assoc($resulta);
-								$cpt= $data['total'];
-								echo "<p>$cpt</p>
+									<p>Diplome</p>
+								</div>
+								<p>nb participants</p>
 								<a href='{$row['lien']}'>{$row['lien']}</a>
 								<p>{$row['description']}</p>
 							</div>
-							";
-							if ($role['role'] == 'intervenant'):
-							echo "<form class='element3' method='post' action='delete.php?id={$row['id']}'>
-								<input id='supp' type='submit' class='btn btn-warning' value='supprimer'>
-							</form>";
-							
-							endif;
-							if ($role['role'] == 'candidat'):
-							
-							echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
-								<input type='submit' class='btn btn-warning' value='inscription'>
-							</form>";
-							endif;
-							
-						echo"</div>
+							<form class='element3' method='post' action='delete.php?id={$row['id']}'>
+								<input type='submit' class='btn btn-warning' value='supprimer'>
+							</form>
+						</div>
 						
 					</div>";
 				}
-					echo "</table>";
 				} else {
-					echo "0 results";
+					echo "Aucune réunion";
 				}
 			?>
 		</div>
 	</div>
-
 </body>
 </html>
+

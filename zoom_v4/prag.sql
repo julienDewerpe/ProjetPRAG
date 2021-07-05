@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 05 juil. 2021 à 01:14
--- Version du serveur : 10.4.19-MariaDB
--- Version de PHP : 8.0.7
+-- Généré le :  lun. 05 juil. 2021 à 18:06
+-- Version du serveur :  10.4.6-MariaDB
+-- Version de PHP :  7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,21 +19,57 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `prag`
+-- Base de données :  `prag`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Structure de la table `creation`
 --
 
-CREATE TABLE `messages` (
-  `msg_id` int(11) NOT NULL,
-  `incoming_msg_id` int(255) NOT NULL,
-  `outgoing_msg_id` int(255) NOT NULL,
-  `msg` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `creation` (
+  `register_user_id` int(11) NOT NULL,
+  `reunion_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `creation`
+--
+
+INSERT INTO `creation` (`register_user_id`, `reunion_id`) VALUES
+(48, 16),
+(48, 17),
+(48, 18),
+(48, 18),
+(48, 18),
+(48, 18),
+(48, 19),
+(48, 20),
+(48, 21),
+(48, 22);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `inscription`
+--
+
+CREATE TABLE `inscription` (
+  `register_user_id` int(11) NOT NULL,
+  `reunion_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `inscription`
+--
+
+INSERT INTO `inscription` (`register_user_id`, `reunion_id`) VALUES
+(49, 17),
+(49, 13),
+(49, 20),
+(49, 19),
+(50, 20);
 
 -- --------------------------------------------------------
 
@@ -71,7 +108,8 @@ INSERT INTO `register_user` (`register_user_id`, `user_name`, `user_email`, `use
 (45, 'wdqsdsqd', 'dqsdqdqdqd@gmail.com', '$2y$10$3eFM87iBctfer4xQBSGaJesPdKDDWr7n0Xc0gtq8btp57ccgrp5/K', '1f0bd12922de5bda76f4f2a0e1aa3d32', 'not verified', NULL),
 (46, 'sqdqsd', 'opoikds@gmail.com', '$2y$10$3/RC7bDhcA7kP2HqUD95eeYLX5xTWJKqoxOyKVfBvsH2DZFv5KWom', 'a654a851fec245e8dbc2541a0ee71b4d', 'not verified', NULL),
 (48, 'taha', 'taha92220@gmail.com', '$2y$10$sMTZZMJysCGHye3FByYQZOJuIue8xfgJdbLkmsQIPqwfDxFWlzriO', 'ccdf993dd804cbe05bbf6f281d28127a', 'verified', 'intervenant'),
-(49, 'julien', 'julien.dewerpe@orange.fr', '$2y$10$UOU2nI/7o97zinH1/rrA6OX4dHxZogjSZnJlW8jNP2/CjK1gJ/mdi', 'e77e68a53947acb69b653f573804b01b', 'verified', 'intervenant');
+(49, 'toot', 'azerty@gmail.com', '$2y$10$cPJNBLnuxoNRxt//QhWB7eTy5Yz0/peBFL2/jGorjuxaIvnFzrznW', '929d3c68d81dae623efb111673e76f0a', 'verified', 'candidat'),
+(50, 'posiqd', 'ujnh@gmail.com', '$2y$10$2iLme.HJDe/RHZH5dP1d/uSdXIROkAErrPmx3KQbaB7uyJyqulD..', 'ee6784155dfb1a6b2abb421a59475ea8', 'verified', 'candidat');
 
 -- --------------------------------------------------------
 
@@ -83,6 +121,8 @@ CREATE TABLE `reunion` (
   `id` int(11) NOT NULL,
   `id_zoom` varchar(100) NOT NULL,
   `sujet` varchar(50) NOT NULL,
+  `theme` varchar(50) NOT NULL,
+  `niveau` varchar(50) NOT NULL,
   `difficulte` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
   `duree` int(11) NOT NULL,
@@ -95,45 +135,15 @@ CREATE TABLE `reunion` (
 -- Déchargement des données de la table `reunion`
 --
 
-INSERT INTO `reunion` (`id`, `id_zoom`, `sujet`, `difficulte`, `date`, `duree`, `description`, `mdp`, `lien`) VALUES
-(14, '73602141154', 'je test la création', 'expert', '2021-07-05T00:21', 120, 'jdnfjaze', '', 'https://us04web.zoom.us/j/73602141154?pwd=bVFrYXh5eElVaXIvVWVTMExzekpvQT09'),
-(15, '79949611721', 'gertgzetrgze', 'debutant', '2021-07-05T03:21', 90, 'gezrgzergzer', '', 'https://us04web.zoom.us/j/79949611721?pwd=YmpqUk5ESy9ucS9IajdseHcwQTE1QT09'),
-(16, '77805586876', 'dfzefzefze', 'debutant', '2021-07-05T00:28', 90, 'fezafzf', '', 'https://us04web.zoom.us/j/77805586876?pwd=UUFjVThnSjlXczR0bldzcVh5NW50QT09'),
-(17, '73389776634', 'fezfzefzefzef', 'debutant', '2021-07-05T00:29', 120, 'fzefzefzef', '', 'https://us04web.zoom.us/j/73389776634?pwd=S0xyMDMwMVY2TS9tSUVQVFJOY3dFQT09');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `users`
---
-
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `unique_id` int(255) NOT NULL,
-  `fname` varchar(255) NOT NULL,
-  `lname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`user_id`, `unique_id`, `fname`, `lname`, `email`, `password`, `img`, `status`) VALUES
-(1, 439548796, 'test', 'test', 'bouchouirab.amine@gmail.com', 'ddf82891bf03cd9a3a1b29cbd498f1b7', '1625041694coffee-time-png_91570.jpg', 'Active now');
+INSERT INTO `reunion` (`id`, `id_zoom`, `sujet`, `theme`, `niveau`, `difficulte`, `date`, `duree`, `description`, `mdp`, `lien`) VALUES
+(19, '79617694926', 'poa', 'toto', 'Post-BAC', 'intermÃ©diare', '05/07/2021 12:48', 45, 'sdsd', '', 'https://us04web.zoom.us/j/79617694926?pwd=VGowNllWMWJRTWw2UHNTMm9TRVVwdz09'),
+(20, '77888552977', 'qsqs', 'qsqs', 'Bac+4+5', 'expert', '05/07/2021 12:48', 60, 'sq', '', 'https://us04web.zoom.us/j/77888552977?pwd=WUZPSFVOcFFkT1VNNllZNjVPOG5rUT09'),
+(21, '76827903034', 'sdsd', 'sdqsdq', 'Bac+2+3', 'debutant', '22/07/2021 12:48', 60, 'sdsds', 'sdsd', 'https://us04web.zoom.us/j/76827903034?pwd=dnJBL0VDd0NLcklCTmZPNE1qTDVRUT09'),
+(22, '73431807365', 'test cal', 'test calendri', 'Autre', 'debutant', '05/22/2021 12:48', 60, 'sqdqd', 'sdsd', 'https://us04web.zoom.us/j/73431807365?pwd=S29wamdPemVrTjF2b29tMDk5cXNndz09');
 
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`msg_id`);
 
 --
 -- Index pour la table `register_user`
@@ -148,38 +158,20 @@ ALTER TABLE `reunion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `register_user`
 --
 ALTER TABLE `register_user`
-  MODIFY `register_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `register_user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT pour la table `reunion`
 --
 ALTER TABLE `reunion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

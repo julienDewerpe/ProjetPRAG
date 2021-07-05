@@ -1,5 +1,12 @@
 <?php 
- 
+include('database_connection.php');
+
+if(!isset($_SESSION["user_id"]))
+{
+	header("location:login.php");
+}
+
+
 if(isset($_POST["insert"]))
 {
 	include_once 'Zoom_Api.php';
@@ -46,6 +53,8 @@ try {
 	$databaseName="prag";
 	
 	$topic=$_POST['topic'];
+	$theme=$_POST['theme'];
+	$niveau=$_POST['niv'];
 	$date=$_POST['date'];
 	$duree=$_POST['duree'];
 	$story=$_POST['story'];
@@ -54,7 +63,15 @@ try {
 
 	
 	$connect=mysqli_connect($hostname,$username,$password,$databaseName);
-	$query = "INSERT INTO `reunion`(`id_zoom`, `sujet`, `difficulte`, `date`, `duree`, `description`, `mdp`, `lien`) VALUES ('$response->id','$topic','$difficulte','$date','$duree','$story','$mdp','$response->join_url')";
+	$query = "INSERT INTO `reunion`(`id_zoom`, `sujet`,`theme`,`niveau`, `difficulte`, `date`, `duree`, `description`, `mdp`, `lien`) VALUES ('$response->id','$topic','$theme','$niveau','$difficulte','$date','$duree','$story','$mdp','$response->join_url')";
+	
+	$req = $connect->query("SHOW TABLE STATUS FROM prag LIKE 'reunion' ");
+	$donnees = $req->fetch_assoc();
+	$id_session=$_SESSION['user_id'];
+	$id_reunion=$donnees['Auto_increment'];
+	$query2 = "INSERT INTO `creation`(`register_user_id`, `reunion_id`) VALUES ($id_session,$id_reunion)";
+	
+	$create=mysqli_query($connect,$query2);
 	
 	$result=mysqli_query($connect,$query);
 	
@@ -68,7 +85,15 @@ try {
 }
  
 echo "<form action='creerReunion.php' method='post'>
+ <p>Thème : <input type='text' name='theme' required/></p>
  <p>Sujet : <input type='text' name='topic' required/></p>
+ <p>Niveau d'étude :
+ 	<select name='niv' id='niv-select'>
+    <option value='Post-BAC'>PostBAC</option>
+    <option value='Bac+2+3'>Bac+2+3</option>
+    <option value='Bac+4+5'>Bac+4+5</option>
+	<option value='Autre'>Autre</option>
+	</select>
  <p>Date : <input type='datetime-local' name='date' required/></p>
  <p>Durée : <input type='number' name='duree' min='30' max='120' step='15' required/></p>
  <p>Description : <textarea id='story' name='story' rows='5' cols='33' ></textarea></p>
