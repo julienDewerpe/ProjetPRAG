@@ -7,19 +7,18 @@ background-size: cover; height: 90%;">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 	<link rel="stylesheet" href="css/creerReunion.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Créer une réunion</title>
-    <link rel="icon" href="./favicon.png" />
+	<title>Créer une rencontre</title>
+
+	<?php 
+	include("includes/font.html");
+	include("includes/bootstrap.html");
+	?>
 </head>
+<?php 
+include("includes/navbar.html")
+?>
 
 
 <?php 
@@ -106,27 +105,7 @@ try {
 	}
 }
  
-echo "<body style='background-color: transparent;'>
-
-<nav class='navbar navbar-expand-lg' style='background-color: #E5E5E5;'>
-	<a class='navbar-brand' href='choix.php' style='margin-left: 10px;'>
-		<img src='images/txtlogo.png' class='d-inline-block align-top' style='width: 120px;'>
-	  </a>
-
-	<div class='collapse navbar-collapse' id='navbarSupportedContent'>
-	<ul class='navbar-nav mr-auto'>
-		<li class='nav-item active'>
-			<input class='form-control' type='search' placeholder='Rechercher' aria-label='Search' style='width: 1000px;'>
-		</li>
-	</ul>
-	</div>
-	<form class='form-inline'>
-	
-		<a href='./choix.php'><button class='btn btn-dark' type='submit' style='background-color: #755FF0; color:white; font-weight: bold; border: none;'><img src='images/calendrier.svg' style='width: 30px;'></button></a>
-		<button class='btn btn-dark' type='submit' style='background-color: #755FF0; color:white; font-weight: bold; border: none;'><img src='images/profil.png' style='width: 27px;'></button>
-		<button class='btn btn-dark' type='submit' style='background-color: #755FF0; color:white; font-weight: bold; border: none; margin-right: 5px;'><img src='images/deco.svg' style='width: 33px;'></button>
-	</form>
-</nav>
+echo "
 <br>
 
 

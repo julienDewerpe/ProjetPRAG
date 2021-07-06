@@ -1,43 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
+background-repeat: no-repeat;
+background-size: cover; height: 90%;">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="css/accueilCSS.css">
-
 	<title>Mes rencontres</title>
 	
-	<link rel="icon" href="images/favicon.png">
+	<?php 
+	include("includes/font.html");
+	include("includes/bootstrap.html");
+	?>
 </head>
-<body id="body">
-	 <header>
+<?php 
+include("includes/navbar.html")
+?>
 
-		<nav class="navbar navbar-expand-lg" style="background-color: #E5E5E5;">
-				<a class="navbar-brand" href="#" style="margin-left: 10px;">
-					<a href='choix.php'><img src="images/txtlogo.png" class="d-inline-block align-top" alt="" style="width: 120px;"></a>
-				</a>
-		
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<input onclick="" class="form-control" type="search" placeholder="Rechercher" aria-label="Search" style="width: 1000px;">
-					</li>
-
-				</ul>
-				</div>
-				<form class="form-inline">
-					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none;"><img src="images/calendrier.svg" style="width: 30px;"></button>
-					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none;"><img src="images/profil.png" style="width: 27px;"></button>
-					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none; margin-right: 5px;" ><img src="images/deco.svg" style="width: 33px;"></button>
-				</form>
-		</nav>
-	 </header>
 		
 
 	<div id="page">

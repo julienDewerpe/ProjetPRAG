@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
+background-repeat: no-repeat;
+background-size: cover; height: 90%;">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Mon calendrier</title>
+	
+	<?php 
+	include("includes/font.html");
+	include("includes/bootstrap.html");
+	?>
+</head>
+<?php 
+include("includes/navbar.html")
+?>
+
+<br>
+
 <?php
 include 'Calendar.php';
 
@@ -40,10 +63,10 @@ if ($result->num_rows > 0) {
 	<body>
 	    <nav class="navtop">
 	    	<div>
-	    		<h1>Calendrier des rencontres</h1>
+	    		<h2>Calendrier des rencontres</h2>
 	    	</div>
 	    </nav>
-		<div class="content home">
+		<div class="content home" style="width:90%;">
 			<?=$calendar?>
 		</div>
 	</body>

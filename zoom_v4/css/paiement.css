@@ -4,9 +4,8 @@
     margin: auto;
     width: 600px;
     padding: 3rem 3.5rem;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .mt-50 {
     margin-top: 50px
 }
@@ -64,23 +63,24 @@ input {
     outline: none;
     font-size: 1rem;
     font-weight: 600;
-    color: #000;
+    color: white;
     width: 100%;
     min-width: unset;
     background-color: transparent;
     border-color: transparent;
-    margin: 0
+    margin: 0;
+    
 }
 
 form a {
-    color: grey;
+    color: white;
     text-decoration: none;
     font-size: 0.87rem;
     font-weight: bold
 }
 
 form a:hover {
-    color: grey;
+    color: white;
     text-decoration: none
 }
 
@@ -96,8 +96,7 @@ form .row-1 {
     width: 100%;
     min-width: unset;
     border-radius: 5px;
-    background-color: rgba(221, 228, 236, 0.301);
-    border-color: rgba(221, 228, 236, 0.459);
+    background-color: #FCA311;
     margin: 2vh 0;
     overflow: hidden
 }
@@ -138,7 +137,8 @@ form .row .col-2 {
 
 #card-inner {
     font-size: 0.7rem;
-    color: gray
+    color: white;
+    font-weight: bold;
 }
 
 .three .col-7 {
@@ -157,8 +157,7 @@ form .row .col-2 {
     width: 100%;
     min-width: unset;
     border-radius: 5px;
-    background-color: rgba(221, 228, 236, 0.301);
-    border-color: rgba(221, 228, 236, 0.459);
+    background-color: #FCA311;
     margin: 2vh 0;
     width: fit-content;
     overflow: hidden
@@ -186,7 +185,7 @@ form .row .col-2 {
     color: white;
     -webkit-box-shadow: none;
     -webkit-user-select: none;
-    transition: none
+    transition: none;
 }
 
 .btn:hover {
@@ -208,3 +207,10 @@ input:focus::-moz-placeholder {
 input:focus:-ms-input-placeholder {
     color: transparent
 }
+
+button{
+    width: 300px;
+    height: 300px;
+    border-radius: 3px solid;
+}
+
