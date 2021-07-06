@@ -11,31 +11,31 @@
 
 	<link rel="stylesheet" href="css/accueilCSS.css">
 
-	<title>Document</title>
+	<title>Mes rencontres</title>
+	
+	<link rel="icon" href="images/favicon.png">
 </head>
 <body id="body">
 	 <header>
 
 		<nav class="navbar navbar-expand-lg" style="background-color: #E5E5E5;">
 				<a class="navbar-brand" href="#" style="margin-left: 10px;">
-					<img src="images/txtlogo.png" class="d-inline-block align-top" alt="" style="width: 120px;">
+					<a href='choix.php'><img src="images/txtlogo.png" class="d-inline-block align-top" alt="" style="width: 120px;"></a>
 				</a>
 		
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<input class="form-control" type="search" placeholder="Rechercher" aria-label="Search" style="width: 1000px;">
+						<input onclick="" class="form-control" type="search" placeholder="Rechercher" aria-label="Search" style="width: 1000px;">
 					</li>
-					<li class="nav-item active">
-						<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none; height: 42px; margin-left: 10px; width: 100px;" >Accueil</button>
-					</li>
+
 				</ul>
 				</div>
 				<form class="form-inline">
 					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none;"><img src="images/calendrier.svg" style="width: 30px;"></button>
 					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none;"><img src="images/profil.png" style="width: 27px;"></button>
 					<button class="btn btn-dark" type="submit" style="background-color: #755FF0; color:white; font-weight: bold; border: none; margin-right: 5px;" ><img src="images/deco.svg" style="width: 33px;"></button>
-			</form>
+				</form>
 		</nav>
 	 </header>
 		
@@ -44,6 +44,8 @@
 		<div id="banniere">
 			<?php 
 				include('database_connection.php');
+
+				
 
 				if(!isset($_SESSION["user_id"]))
 				{
@@ -71,18 +73,32 @@
 							$role['role']= $row['role'];
 						}
 					}
+				if ($role['role'] == null)
+				{
+					header("location:page_premiere_co.php");
+				}
 				if ($role['role'] == 'candidat')
 				{
 					echo"
 					<h1>Toutes les rencontres</h1>";
 					$query="SELECT * FROM reunion r where r.id not in (select reunion_id from inscription where register_user_id=$id_session)";
-					
+
+					if(isset($_POST["show_insc"]))
+					{
+											
+					echo "<form name='form1' action='choix.php' method='post'>
+					<input type='submit' name='retour' class='btn btn-warning' value='Retour aux rencontres'>
+					</form>";
+					$query = "SELECT * FROM reunion r  INNER JOIN inscription i ON r.id=i.reunion_id and i.register_user_id=$id_session";
+						if (isset($_POST["retour"])){
+								header("location:choix.php");
+						}
+					}
+					else {
+											
 					echo "<form name='form1' action='' method='post'>
 					<input type='submit' name='show_insc' class='btn btn-warning' value='Mes inscriptions'>
 					</form>";
-					if(isset($_POST["show_insc"]))
-					{
-						$query = "SELECT * FROM reunion r  INNER JOIN inscription i ON r.id=i.reunion_id and i.register_user_id=$id_session";
 					}
 				}
 				if ($role['role'] == 'intervenant')
@@ -154,11 +170,16 @@
 							</form>";
 							
 							endif;
-							if ($role['role'] == 'candidat'):
-							
-							echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
-								<input type='submit' class='btn btn-warning' value='inscription'>
-							</form>";
+							if ($role['role'] == 'candidat' && !isset($_POST["show_insc"])):
+						
+										echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
+											<input type='submit' class='btn btn-warning' value='inscription'>
+										</form>";
+							endif;
+							if (($role['role'] == 'candidat') && (isset($_POST["show_insc"]))):
+										echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
+											<input type='submit' class='btn btn-warning' value='se désinscrire'>
+										</form>";
 							endif;
 							
 						echo"</div>

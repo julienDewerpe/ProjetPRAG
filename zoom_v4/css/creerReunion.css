@@ -1,0 +1,67 @@
+#baniere{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 3%;
+}
+
+#formulaire{
+    width: 80%;
+    margin: auto;
+}
+*{
+font-family: 'Open Sans', sans-serif;
+}
+
+#formulaire h2{
+    font-weight: bold;
+}
+
+#corps{
+    display: flex;
+    width: 60%;
+}
+
+input, textarea, select{
+    background-color: #E5E5E5;
+    border: transparent;
+    border-radius: 2px;
+}
+
+.elements
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.child
+{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+#corps input, select
+{
+    width: 100%;
+    height: 30px;
+}
+
+#formu
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#image
+{
+    width: 25%;
+}
+
+#image img
+{
+    width: 100%;
+}
