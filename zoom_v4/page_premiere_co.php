@@ -19,30 +19,32 @@
         include("includes/bootstrap.html");
         ?>
     </head>
+	
 
     <body style="background-color:transparent;">
     <body>
 
         <h2 class="text-center text-warning" id="titre">Bienvenue sur <a href="page_premiere_co.php"><img src="images/txtlogo.png" alt="" style="width:200px;"></a></h2> 
-        <p> Pour quelle raison souhaitez-vous nous rejoindre ?</p>
+       <?php if (!isset($_POST["role"])) : ?>
+
+		<p class="text-center text-dark"> Pour quelle raison souhaitez-vous nous rejoindre ?</p>
         
         <div class="text-center">
             <form id="jsp" action="" method="post">
                 <div>
                     <input type="submit" class=" btn btn-warning" name="role" value="Entre'edeur" required/>
-                    <p>blalblablalblablalblabablalblablablabalblabl</p>
                 </div>
                 <div>
                     <input type="submit" class="btn btn-warning" name="role" value="Entre'edien"  />
-                    <p>blalblablalblablalblabablalblablablabalblabl</p>
                 </div>
             </form>
         </div>
+<?php endif; ?>
 
     <?php 
 
         if (isset($_POST["role"])){
-            if ($_POST["role"] == "Entre'edeur") {
+            if ($_POST["role"] == "Entre'edien") {
                 echo '		
                 <div class="card mt-50 mb-50 text-white" style="background-color:#755FF0;">
                     <div class="nav">
@@ -51,7 +53,8 @@
                             <li class="active"><a href="#">Paiement</a></li>
                         </ul>
                     </div>
-                    <form> <span id="card-header">Cartes sauvegardées:</span>
+                    <form id="formulaire2" action="modif_role.php?role=entreedien" method="post"> 
+					<span id="card-header">Cartes sauvegardées:</span>
                         <div class="row row-1">
                             <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /></div>
                             <div class="col-7"> <input type="text" placeholder="**** **** **** 3193"> </div>
@@ -82,13 +85,13 @@
             else {
                 echo 
                 '
-                <form id="formulaire" action="creerReunion.php" method="post">
+                <form id="formulaire" action="modif_role.php?role=entreedeur" method="post">
                     
                     <div id="formu">
                         <div id="corps" class="card">
                             <div id="baniere">
-                                <h2>Créer une rencontre </h2>
-                                <input type="submit" name="insert" value="Créer la rencontre" class="btn btn-warning">
+                                <h2>Créer un profil </h2>
+                                <input type="submit" name="insert" value="Créer mon profil" class="btn btn-warning">
                             </div>
                             <label for="topic">Université d\'origine</label>
                             <input type="text" name="universite" required/>

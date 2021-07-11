@@ -60,7 +60,7 @@ include("includes/navbar.html")
 				{
 					header("location:page_premiere_co.php");
 				}
-				if ($role['role'] == 'candidat')
+				if ($role['role'] == 'entreedien')
 				{
 					echo"
 					<h1>Toutes les rencontres</h1>";
@@ -84,7 +84,7 @@ include("includes/navbar.html")
 					</form>";
 					}
 				}
-				if ($role['role'] == 'intervenant')
+				if ($role['role'] == 'entreedeur')
 				{
 					echo"
 					<h1>Mes rencontres</h1>
@@ -131,7 +131,7 @@ include("includes/navbar.html")
 								<img src='images/rencontre.jpg' alt='rencontre'>
 							</div>
 							<div class='element2'>
-								<h5>Catégorie</h5>
+								<h4>{$row['theme']}</h4>
 								<h5 class='card-title'>{$row['sujet']}</h5>
 								<div class='groupement'>
 									<p>{$row['difficulte']}</p>
@@ -147,19 +147,19 @@ include("includes/navbar.html")
 								<p>{$row['description']}</p>
 							</div>
 							";
-							if ($role['role'] == 'intervenant'):
+							if ($role['role'] == 'entreedeur'):
 							echo "<form class='element3' method='post' action='delete.php?id={$row['id']}'>
 								<input id='supp' type='submit' class='btn btn-warning' value='supprimer'>
 							</form>";
 							
 							endif;
-							if ($role['role'] == 'candidat' && !isset($_POST["show_insc"])):
+							if ($role['role'] == 'entreedien' && !isset($_POST["show_insc"])):
 						
 										echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
 											<input type='submit' class='btn btn-warning' value='inscription'>
 										</form>";
 							endif;
-							if (($role['role'] == 'candidat') && (isset($_POST["show_insc"]))):
+							if (($role['role'] == 'entreedien') && (isset($_POST["show_insc"]))):
 										echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
 											<input type='submit' class='btn btn-warning' value='se désinscrire'>
 										</form>";
