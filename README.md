@@ -9,9 +9,10 @@ C’est autour d’un café que l’équipe Entre’Ed s’est créée. Jeu de m
 ### Nos objectifs 
 
 Nos objectifs sont les suivants :
-●Mettre en place une association qui puisse se développer et se faireconnaître à l’échelle nationale dans le milieu universitaire ;
-●Simplifier la démarche des étudiants souhaitant mettre en place des réseaux d’entraide sur les thématiques de groupes de soutien aux études et des perspectives d'évolutions professionnelles ;
-●Permettre aux étudiants de bénéficier de l’expérience des anciens.
+<ul>
+<li>Mettre en place une association qui puisse se développer et se faireconnaître à l’échelle nationale dans le milieu universitaire ;</li>
+<li>Simplifier la démarche des étudiants souhaitant mettre en place des réseaux d’entraide sur les thématiques de groupes de soutien aux études et des perspectives d'évolutions professionnelles ;</li>
+<li>Permettre aux étudiants de bénéficier de l’expérience des anciens.</li>
 
 ### Les fonctionnalités de notre plateforme
 
