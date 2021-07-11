@@ -1,6 +1,6 @@
 # ProjetPRAG
 
-![](zoom/images/logo.png)
+![](entreed/images/logo.png)
 
 ### Courte présentation - Qui sommes-nous ?
 
