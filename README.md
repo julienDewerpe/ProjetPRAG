@@ -1,6 +1,8 @@
 # ProjetPRAG
 
+<p align="center">
 ![](entreed/images/logo.png)
+</p>
 
 ### Courte présentation - Qui sommes-nous ?
 
