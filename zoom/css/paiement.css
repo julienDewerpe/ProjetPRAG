@@ -1,0 +1,245 @@
+*{
+    background-color: transparent;
+}
+
+.card {
+    margin: auto;
+    width: 600px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.mt-50 {
+    margin-top: 50px
+}
+
+.mb-50 {
+    margin-bottom: 50px
+}
+
+@media(max-width:767px) {
+    .card {
+        width: 90%;
+        padding: 1.5rem
+    }
+}
+
+@media(height:1366px) {
+    .card {
+        width: 90%;
+        padding: 8vh
+    }
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 2.5em
+}
+
+.nav {
+    display: flex
+}
+
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    padding-inline-start: unset;
+    margin-bottom: 6vh
+}
+
+.nav li {
+    padding: 1rem
+}
+
+.nav li a {
+    color: black;
+    text-decoration: none
+}
+
+.active {
+    border-bottom: 2px solid black;
+    font-weight: bold
+}
+
+input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    min-width: unset;
+    background-color: transparent;
+    border-color: transparent;
+    margin: 0;
+    
+}
+
+form a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: bold
+}
+
+form a:hover {
+    color: white;
+    text-decoration: none
+}
+
+form .row {
+    margin: 0;
+    overflow: hidden
+}
+
+form .row-1 {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: #FCA311;
+    margin: 2vh 0;
+    overflow: hidden
+}
+
+form .row-2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem
+}
+
+form .row .row-2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 0.8rem
+}
+
+form .row .col-2,
+.col-7,
+.col-3 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 1vh
+}
+
+form .row .col-2 {
+    padding-right: 0
+}
+
+#card-header {
+    font-weight: bold;
+    font-size: 0.9rem
+}
+
+#card-inner {
+    font-size: 0.7rem;
+    color: white;
+    font-weight: bold;
+}
+
+.three .col-7 {
+    padding-left: 0
+}
+
+.three {
+    overflow: hidden;
+    justify-content: space-between
+}
+
+.three .col-2 {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: unset;
+    border-radius: 5px;
+    background-color: #FCA311;
+    margin: 2vh 0;
+    width: fit-content;
+    overflow: hidden
+}
+
+.three .col-2 input {
+    font-size: 0.7rem;
+    margin-left: 1vh
+}
+
+.btn {
+    width: 100%;
+    background-color: rgb(65, 202, 127);
+    border-color: rgb(65, 202, 127);
+    color: white;
+    justify-content: center;
+    padding: 2vh 0;
+    margin-top: 3vh
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none;
+}
+
+.btn:hover {
+    color: white
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+input:focus:-moz-placeholder {
+    color: transparent
+}
+
+input:focus::-moz-placeholder {
+    color: transparent
+}
+
+input:focus:-ms-input-placeholder {
+    color: transparent
+}
+
+#jsp
+{
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+
+}
+
+#jsp div
+{
+    width:30%
+}
+
+#jsp input
+{
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    width: 100%;
+    height: 200px;
+}
+
+#titre
+{
+    width: 28%;
+    margin: auto;
+    display: flex;
+    align-items: center ;
+    justify-content: space-around;
+}
+

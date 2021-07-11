@@ -105,5 +105,66 @@ class Zoom_Api
 		}
         	return json_decode($response);
 	}
+	
+    	public function sendRequest2()
+    	{
+		//Enter_Your_Email
+		$request_url = "https://api.zoom.us/v2/users/bouchouirab.amine@gmail.com/meetings";
+		
+		$headers = array(
+			"authorization: Bearer ".$this->generateJWTKey(),
+			"content-type: application/json",
+			"Accept: application/json",
+		);
+		
+		
+        	$ch = curl_init();
+        	curl_setopt_array($ch, array(
+            	CURLOPT_URL => $request_url,
+	    	CURLOPT_RETURNTRANSFER => true,
+	    	CURLOPT_ENCODING => "",
+	    	CURLOPT_MAXREDIRS => 10,
+	    	CURLOPT_TIMEOUT => 30,
+	    	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	    	CURLOPT_CUSTOMREQUEST => "GET",
+	    	CURLOPT_HTTPHEADER => $headers,
+        	));
+
+        	$response = curl_exec($ch);
+        	$err = curl_error($ch);
+        	curl_close($ch);
+        	if (!$response) {
+            		return $err;
+		}
+        	return json_decode($response,true);
+	}	
+	
+	public function delete(Request $request, string $id)
+	{
+		$path = 'meetings/' . $id;
+		return $this->sendRequest($createMeetingArray);
+ 
+	}
+	
+	function listMeetings($userId){
+	  $listMeetingsArray = array();
+	  $listMeetingsArray['host_id'] = $userId;
+	  return $this->sendRequest($listMeetingsArray);
+	}
+	
+	function getUserInfo($userId){
+	  $getUserInfoArray = array();
+	  $getUserInfoArray['id'] = $userId;
+	  return $this->sendRequest('user/get',$getUserInfoArray);
+	}   
+	
+	 function getMeetingList($type=1, $from, $to){
+	  $createADashboardArray = array();
+	  $createADashboardArray['type'] = $type;
+	  $createADashboardArray['from'] = $from;
+          $createADashboardArray['to'] = $to;
+	  return $this->sendRequest2($createADashboardArray);
+	}
+	
 }
 

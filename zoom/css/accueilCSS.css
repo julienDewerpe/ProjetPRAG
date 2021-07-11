@@ -1,0 +1,96 @@
+*
+{
+    margin:0;
+    padding:0;
+}
+
+#body
+{
+    background-image: url('../images/fond2.png');
+	background-repeat: no-repeat;
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 18px;
+    color: #14213d;
+    font-size: 20px;
+}
+
+#page
+{
+    margin: auto;
+    width: 90%;
+    margin-top: 6%;
+}
+
+
+#cartes
+{
+    overflow: scroll;
+    height: 450px;
+    margin-top: 1%;
+}
+
+#cartes::-webkit-scrollbar
+{
+    display: none;
+}
+
+.card
+{
+    display: flex;
+}
+
+
+.card-body
+{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.element1
+{
+    width: 15%;
+}
+
+.element1 img
+{
+    width: 100%;
+}
+
+.element2
+{
+    width:70%;
+}
+
+.element3
+{
+    width: 5%;
+}
+
+.groupement
+{
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+}
+
+header
+{
+    
+    z-index: 2;
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+}
+
+.element3 input:focus
+{
+    transform: scale(1.05);
+}

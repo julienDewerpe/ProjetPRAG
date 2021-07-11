@@ -295,6 +295,7 @@ a:hover
 
 #button input:hover
 {
+    outline: none !important;
     transition: transform .5s ease;
     transform: scale(1.05);
 }

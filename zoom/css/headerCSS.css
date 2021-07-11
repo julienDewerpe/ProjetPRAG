@@ -1,0 +1,60 @@
+*
+{
+    margin:0;
+    padding:0;
+}
+
+#navbarre
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e5e5e5;
+}
+
+#logo
+{
+    width: 10%;
+}
+
+#logo img
+{
+    width: 100%;
+}
+
+#research
+{
+    width: 60%;
+}
+
+#group_boutons
+{
+    display: flex;
+    width: 15%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#group_boutons a
+{
+    background: #755FF0 ;
+    width: 20%;
+    padding: 2px;
+    border-radius: 10px ;
+}
+
+#group_boutons a img 
+{
+    width: 100%;
+}
+
+#group_boutons a:hover
+{
+    opacity: 50%;
+}
+
+#group_boutons a:focus
+{
+    transform: scale(1.05);
+}
