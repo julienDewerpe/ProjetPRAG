@@ -1,3 +1,7 @@
+<!--
+... PARTIE HTML ... 
+-->
+
 <!DOCTYPE html>
 <html lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
 background-repeat: no-repeat;
@@ -26,15 +30,28 @@ include("includes/navbar.html")
 	<div id="page">
 		<div id="banniere">
 			<?php 
+			
+//==============================================
+// Page d'accueil - choix.php
+//==============================================
+
 				include('database_connection.php');
 
-				
+/*
+* On vérifie si l'utilisateur est déjà connecté, si non alors il est renvoyé
+* au login.php où il pourra s'inscrire ou se connecté
+*/				
 
 				if(!isset($_SESSION["user_id"]))
 				{
 					header("location:login.php");
 				}
 				$id_session=$_SESSION['user_id'];
+				
+/*
+* On récupère alors le role de l'utilisateur connecté  :
+* si il n'en a toujours pas, il est renvoyé a la page de choix de role page_premiere_co.php
+*/
 
 				$role = array ();	
 				$query = "
@@ -60,12 +77,19 @@ include("includes/navbar.html")
 				{
 					header("location:page_premiere_co.php");
 				}
+				
+/*
+* Si il est Entre'Edien, on récupère les réunions auxquelles il n'est pas inscrit, avec l'id de la session
+*/
 				if ($role['role'] == 'entreedien')
 				{
 					echo"
 					<h1>Toutes les rencontres</h1>";
 					$query="SELECT * FROM reunion r where r.id not in (select reunion_id from inscription where register_user_id=$id_session)";
 
+/*
+* Alors si il veut voir les réunions auxquelles il est inscrit, on change la requête
+*/
 					if(isset($_POST["show_insc"]))
 					{
 											
@@ -84,23 +108,21 @@ include("includes/navbar.html")
 					</form>";
 					}
 				}
+				
+/*
+* Enfin, si il est Entre'Edeur, on récupère les réunions qu'il a créées
+*/
 				if ($role['role'] == 'entreedeur')
 				{
 					echo"
 					<h1>Mes rencontres</h1>
 					<form name='form1' action='' method='post'>
-					<input type='submit' name='submit1' class='btn btn-warning' value='Creer'>
+					<input type='submit' name='creer' class='btn btn-warning' value='Creer'>
 					</form>";
 					$query = "SELECT * FROM reunion r  INNER JOIN creation c ON r.id=c.reunion_id and c.register_user_id=$id_session";
-					if(isset($_POST["submit1"]))
+					if(isset($_POST["creer"]))
 					{
 						header('Location:creerReunion.php');
-					}
-					if(isset($_POST["submit2"])) {
-						header('Location:listeReunion.php');
-					}
-					if(isset($_POST["submit3"])) {
-						header('Location:supprimerReunion.php');
 					}
 				}
 				?>
@@ -109,6 +131,10 @@ include("includes/navbar.html")
 		
 		<div id="cartes">	
 			<?php
+			
+//=================================================================================
+// Récupération et affichage des données de réunions - base de données phpmyadmin
+//=================================================================================
 				$hostname="localhost";
 				$username="root";
 				$password="";
@@ -160,7 +186,7 @@ include("includes/navbar.html")
 										</form>";
 							endif;
 							if (($role['role'] == 'entreedien') && (isset($_POST["show_insc"]))):
-										echo "<form class='element3' method='post' action='inscription.php?id={$row['id']}'>
+										echo "<form class='element3' method='post' action='desinscription.php?id={$row['id']}'>
 											<input type='submit' class='btn btn-warning' value='se désinscrire'>
 										</form>";
 							endif;

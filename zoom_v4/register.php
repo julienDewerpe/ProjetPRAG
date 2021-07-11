@@ -1,13 +1,32 @@
 <?php
 
+//==============================================
+// Page d'inscription - register.php
+//==============================================
+
+/*
+* On vérifie si l'utilisateur est déjà connecté, si oui alors il est renvoyé
+* au menu choix.php où il pourra s'inscrire ou créer une réunion
+*/
+
 include('database_connection.php');
 
 if(isset($_SESSION['user_id']))
 {
-	header("location:index.php");
+	header("location:choix.php");
 }
 
+/*
+* On récupérera le message pour l'afficher à l'utilisateur si la connexion s'est bien établie ou pas
+*/
+
 $message = '';
+
+/*
+* Si l'utilisateur clique sur le bouton Connexion, on vérifie :
+* si l'utilisateur a saisi un mail déjà utilisé,
+* puis on crypte son mdp et on l'ajoute à notre BD
+*/
 
 if(isset($_POST["register"]))
 {
@@ -48,86 +67,14 @@ if(isset($_POST["register"]))
 			)
 		);
 		$result = $statement->fetchAll();
-	/*	if(isset($result))
-		{
-try {
-				require 'class/class.phpmailer.php';
-				require 'class/class.smtp.php';
-				
-			$base_url = "http://localhost:1234/zoom/";  //change this baseurl value as per your file path
-			$mail_body = "
-			<p>Hi ".$_POST['user_name'].",</p>
-			<p>Thanks for Registration. Your password is ".$user_password.", This password will work only after your email verification.</p>
-			<p>Please Open this link to verified your email address - ".$base_url."email_verification.php?activation_code=".$user_activation_code."
-			<p>Best Regards,<br />Webslesson</p>
-			";
-	$mail = new PHPMailer(true);
-
-    $mail->IsSMTP();
-    $mail->Host = 'smtp.mailtrap.io'; // host
-    $mail->SMTPAuth = true;
-    $mail->Username = '3dd9ed3f23f101'; //username
-    $mail->Password = '1ab21e5a6e2bf5'; //password
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 25; //smtp port
-    
-    $mail->setFrom('jon@gmail.com', 'entreed');
-    $mail->addAddress($_POST['user_email'], $_POST['user_name']);
-  
-    $mail->IsHTML(true);
-    $mail->Subject = 'Email Subject';
-    $mail->Body    = $mail_body;
-  
-    $mail->send();
-	
-	echo $mail;
-//ici, la suite du code utile
-} catch (Exception $e) {
-    echo 'Email could not be sent. Mailer Error: '. $mail->ErrorInfo;
-}
-
-		}*/
 	}
 }
 
 ?>
 
-<!--<!DOCTYPE html>
-<html>
-	<head>
-		<title>PHP Register Login Script with Email Verification</title>		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<br />
-		<div class="container" style="width:100%; max-width:600px">
-			<h2 align="center">PHP Register Login Script with Email Verification</h2>
-			<br />
-			<div class="panel panel-default">
-				<div class="panel-heading"><h4>Register</h4></div>
-				<div class="panel-body">
-					<form method="post" id="register_form">
-						<?php echo $message; ?>
-						<div class="form-group">
-							<label>User Name</label>
-							<input type="text" name="user_name" class="form-control" pattern="[a-zA-Z ]+" required />
-						</div>
-						<div class="form-group">
-							<label>User Email</label>
-							<input type="email" name="user_email" class="form-control" required />
-						</div>
-						<div class="form-group">
-							<input type="submit" name="register" id="register" value="Register" class="btn btn-info" />
-						</div>
-					</form>
-					<p align="right"><a href="login.php">Login</a></p>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>-->
+<!--
+... PARTIE HTML ... + AFFICHAGE DU MESSAGE EN PHP
+-->
 
 <!DOCTYPE html>
 <html lang="fr">

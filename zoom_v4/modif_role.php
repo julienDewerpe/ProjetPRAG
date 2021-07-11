@@ -1,4 +1,7 @@
 <?php
+//=================================================================================
+// Modification du rôle lors de la première connexion - modif_role.php
+//=================================================================================
 include('database_connection.php');
 
 $hostname="localhost";

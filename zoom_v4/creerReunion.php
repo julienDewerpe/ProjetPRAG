@@ -1,3 +1,7 @@
+<!--
+... PARTIE HTML ... 
+-->
+
 <!DOCTYPE html>
 <html lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
 background-repeat: no-repeat;
@@ -22,6 +26,16 @@ include("includes/navbar.html")
 
 
 <?php 
+//==============================================
+// Page de création de réunions - creerReunion.php
+//==============================================
+
+
+/*
+* On vérifie si l'utilisateur est déjà connecté, si non alors il est renvoyé
+* au login.php où il pourra s'inscrire ou se connecté
+*/
+
 include('database_connection.php');
 
 if(!isset($_SESSION["user_id"]))
@@ -29,7 +43,10 @@ if(!isset($_SESSION["user_id"]))
 	header("location:login.php");
 }
 
-
+/*
+* Si l'utilisateur clique sur "Créer la rencontre", on ajoute les champs suivant dans notre table reunion: 
+* thème,titre,date,durée,description,difficulte,niveau d'étude,lien zoom et l'id_zoom
+*/
 if(isset($_POST["insert"]))
 {
 	include_once 'Zoom_Api.php';
@@ -37,13 +54,11 @@ if(isset($_POST["insert"]))
 $zoom_meeting = new Zoom_Api();
 
 $originalDate = $_POST['date'];
-//original date is in format YYYY-mm-dd
 $timestamp = strtotime($originalDate); 
 $newDate = date("Y-m-d h:i:s", $timestamp );
 
 $data = array();
 $data['topic'] = $_POST['topic'];
-//$data['start_date'] = date("Y-m-d h:i:s", strtotime('tomorrow'));
 $data['start_date'] = $newDate;
 $data['duration'] 	= $_POST['duree'];;
 $data['type'] 		= 2;
@@ -51,18 +66,6 @@ $data['type'] 		= 2;
 
 try {
 	$response = $zoom_meeting->createMeeting($data);
-	
-	/*echo "<pre>";
-	print_r($response);
-	echo "<pre>";
-		
-	echo "Meeting ID: ". $response->id;
-	echo "<br>";
-	echo "Topic: "	. $response->topic;
-	echo "<br>";
-	echo "Join URL: ". $response->join_url ."<a href='". $response->join_url ."'>Open URL</a>";
-	echo "<br>";
-	echo "Meeting Password: ". $response->password;*/
     
 	
 } catch (Exception $ex) {
@@ -85,7 +88,10 @@ try {
 	
 	$connect=mysqli_connect($hostname,$username,$password,$databaseName);
 	$query = "INSERT INTO `reunion`(`id_zoom`, `sujet`,`theme`,`niveau`, `difficulte`, `date`, `duree`, `description`, `lien`) VALUES ('$response->id','$topic','$theme','$niveau','$difficulte','$date','$duree','$story','$response->join_url')";
-	
+
+/*
+* On associe également grâce à la table creation : l'id de l'utilisateur et l'id de la réunion
+*/	
 	$req = $connect->query("SHOW TABLE STATUS FROM prag LIKE 'reunion' ");
 	$donnees = $req->fetch_assoc();
 	$id_session=$_SESSION['user_id'];
@@ -103,12 +109,14 @@ try {
 	else{
 		echo 'Echec';
 	}
-}
+};
  
-echo "
+?>
 <br>
 
-
+<!--
+... PARTIE HTML ... + AFFICHAGE DU LIEN DE LA REUNION LORS DE LA CREATION
+-->
 
 <form id='formulaire' action='creerReunion.php' method='post'>
 	<div id='baniere'>
@@ -165,12 +173,11 @@ echo "
 		<div id='image'>
 			<img src='images/imgrencontre.png'>
 		</div>
-	</div>";
-		if(isset($_POST["insert"])){
+	</div>
+		<?php if(isset($_POST["insert"])){
 			echo "<p id='message_lien'>Reunion créée : <a href='$msg_creation' >$msg_creation </a></p>";
-			}		
-
-echo "</form>
+			};	
+		?>
+</form>
 </body>
-</html>";
-?>
+</html>

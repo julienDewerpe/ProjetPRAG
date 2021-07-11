@@ -1,4 +1,8 @@
 <?php
+//=================================================================================
+// Desinscription à une réunion, suppression dans la BD puis redirection - desinscription.php
+//=================================================================================
+
 include('database_connection.php');
 
 $hostname="localhost";

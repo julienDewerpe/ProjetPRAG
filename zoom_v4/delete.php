@@ -1,4 +1,7 @@
 <?php
+//==================================================================
+// Suppression de réunions dans la BD puis redirection - delete.php
+//==================================================================
 
 $hostname="localhost";
 $username="root";
@@ -9,6 +12,8 @@ $id = $_GET['id']; // get id through query string
 	$connect=mysqli_connect($hostname,$username,$password,$databaseName);
 	$query="delete from reunion where id = '$id'";
 $del = mysqli_query($connect,$query); // delete query
+	$query2="delete from creation where reunion_id = '$id'";
+$del2 = mysqli_query($connect,$query2); // delete query
 
 if($del)
 {

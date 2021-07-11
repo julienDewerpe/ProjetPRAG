@@ -1,3 +1,6 @@
+<!--
+... PARTIE HTML ...
+-->
 <!DOCTYPE html>
 <html lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
 background-repeat: no-repeat;
@@ -22,6 +25,9 @@ include("includes/navbar.html")
 <br>
 
 <?php
+//=================================================================================
+// Création d'évènements sur le calendrier - calendrier.php
+//=================================================================================
 include 'Calendar.php';
 
 $hostname="localhost";
@@ -52,13 +58,18 @@ if ($result->num_rows > 0) {
 		}
 }
 ?>
+
+<!--
+... PARTIE HTML ... AFFICHAGE DU CALENDRIER
+-->
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Calendrier</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<link href="calendar.css" rel="stylesheet" type="text/css">
+		<link href="css/calendar.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 	    <nav class="navtop">

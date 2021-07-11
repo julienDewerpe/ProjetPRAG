@@ -1,3 +1,7 @@
+<!--
+... PARTIE HTML ... + GESTION DE L'AFFICHAGE CELON LE ROLE CHOISI
+-->
+
 <!DOCTYPE html>
 <html 
     lang="fr" style="background-image: url('images/fondcouleur.jpg'); background-position: center;
@@ -39,7 +43,7 @@
                 </div>
             </form>
         </div>
-<?php endif; ?>
+		<?php endif; ?>
 
     <?php 
 

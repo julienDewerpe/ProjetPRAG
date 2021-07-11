@@ -1,4 +1,8 @@
 <?php
+//=================================================================================
+// Inscription à une réunion, ajout dans la BD puis redirection - inscription.php
+//=================================================================================
+
 include('database_connection.php');
 
 $hostname="localhost";
